@@ -57,8 +57,12 @@ class ViewController: UIViewController {
     func displayResult(playerWon: Bool) {
         if(playerWon) {
             resultLabel.text = "You were on point! Bullseye!"
+            resultLabel.backgroundColor = UIColor.green
+            resultLabel.textColor = UIColor.black
         } else {
             resultLabel.text = "Whoops! You missed! Try again later!"
+            resultLabel.backgroundColor = UIColor.red
+            resultLabel.textColor = UIColor.white
         }
         // Show result label and play again button
         resultLabel.isHidden = false
