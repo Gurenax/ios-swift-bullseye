@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var numLabel: UILabel!
     @IBOutlet weak var numSlider: UISlider!
     @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var exactSwitch: UISwitch!
     
     
     var counter = 0
@@ -32,13 +33,32 @@ class ViewController: UIViewController {
     }
 
     @IBAction func checkValue(_ sender: Any) {
-        if randomNumber == Int(numSlider.value) {
+        let numSliderValue = Int(numSlider.value)
+        var didWin = false
+        if exactSwitch.isOn {
+            didWin = evaluateWinByExact(numValue: numSliderValue)
+        } else {
+            didWin = evaluateWinByNotExact(numValue: numSliderValue)
+        }
+        displayResult(playerWon: didWin)
+    }
+    
+    func evaluateWinByExact(numValue: Int) -> Bool {
+        return randomNumber == Int(numValue)
+    }
+    
+    func evaluateWinByNotExact(numValue: Int) -> Bool {
+        return (Int(numSlider.value) > randomNumber - 3 && Int(numSlider.value) < randomNumber + 3)
+    }
+    
+    func displayResult(playerWon: Bool) {
+        if(playerWon) {
             resultLabel.text = "You were on point! Bullseye!"
         } else {
             resultLabel.text = "Whoops! You missed! Try again later!"
         }
     }
-    
+
     @IBAction func sliderValueChanged(_ sender: Any) {
 //        numLabel.text = "\(round(numSlider.value))"
     }
