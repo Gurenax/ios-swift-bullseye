@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var numLabel: UILabel!
+    @IBOutlet weak var numSlider: UISlider!
     
     var counter = 0
     
@@ -28,6 +30,10 @@ class ViewController: UIViewController {
     @IBAction func increase(_ sender: Any) {
         counter += 1
         numLabel.text = "\(counter)"
+    }
+    
+    @IBAction func sliderValueChanged(_ sender: Any) {
+        numLabel.text = "\(round(numSlider.value))"
     }
 }
 
